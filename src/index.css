@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 224 30% 98%;
+    --foreground: 224 45% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 45% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 45% 10%;
+
+    --primary: 252 87% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 94%;
+    --secondary-foreground: 224 45% 10%;
+
+    --muted: 220 20% 92%;
+    --muted-foreground: 220 25% 28%;
+
+    --accent: 172 80% 36%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 85%;
+    --input: 220 20% 85%;
+    --ring: 252 87% 62%;
+
+    --radius: 0.85rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 224 45% 10%;
+    --sidebar-primary: 252 87% 62%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 94%;
+    --sidebar-accent-foreground: 224 45% 10%;
+    --sidebar-border: 220 20% 88%;
+    --sidebar-ring: 252 87% 62%;
+
+    --warning: 32 95% 42%;
+    --warning-foreground: 0 0% 100%;
+    --success: 155 75% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --cyber-cyan: 188 95% 42%;
+    --cyber-violet: 270 95% 58%;
+    --cyber-amber: 32 100% 48%;
+    --glow-opacity: 0.15;
+  }
+
+  .dark {
+    --background: 228 32% 7%;
+    --foreground: 220 25% 98%;
+
+    --card: 226 28% 11%;
+    --card-foreground: 220 25% 98%;
+
+    --popover: 226 28% 11%;
+    --popover-foreground: 220 25% 98%;
+
+    --primary: 252 90% 68%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 226 24% 16%;
+    --secondary-foreground: 220 25% 98%;
+
+    --muted: 226 24% 17%;
+    --muted-foreground: 220 20% 78%;
+
+    --accent: 172 85% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 226 20% 22%;
+    --input: 226 20% 22%;
+    --ring: 252 90% 68%;
+
+    --sidebar-background: 226 28% 9%;
+    --sidebar-foreground: 220 25% 98%;
+    --sidebar-primary: 252 90% 68%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 226 24% 15%;
+    --sidebar-accent-foreground: 220 25% 98%;
+    --sidebar-border: 226 20% 22%;
+    --sidebar-ring: 252 90% 68%;
+
+    --warning: 38 95% 54%;
+    --warning-foreground: 0 0% 100%;
+    --success: 155 75% 48%;
+    --success-foreground: 0 0% 100%;
+
+    --cyber-cyan: 188 95% 55%;
+    --cyber-violet: 270 95% 72%;
+    --cyber-amber: 35 100% 60%;
+    --glow-opacity: 0.35;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground selection:bg-primary/25 selection:text-primary antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Glassmorphism & Contrast Enhancements */
+@layer utilities {
+  .glass-card {
+    background: hsl(var(--card) / 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .dark .glass-card {
+    background: hsl(var(--card) / 0.88);
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+  }
+
+  .glass-card-interactive {
+    background: hsl(var(--card) / 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-card-interactive:hover {
+    transform: translateY(-3px);
+    border-color: hsl(var(--primary) / 0.45);
+    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.15);
+  }
+
+  .dark .glass-card-interactive {
+    background: hsl(var(--card) / 0.88);
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+  }
+
+  .dark .glass-card-interactive:hover {
+    transform: translateY(-3px);
+    border-color: hsl(var(--primary) / 0.55);
+    box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.65), 0 0 25px -4px hsl(var(--primary) / 0.25);
+  }
+
+  .glass-panel {
+    background: hsl(var(--card) / 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .dark .glass-panel {
+    background: hsl(var(--card) / 0.92);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 30px -2px hsl(var(--primary) / var(--glow-opacity));
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 30px -2px hsl(var(--accent) / var(--glow-opacity));
+  }
+
+  .glow-warning {
+    box-shadow: 0 0 30px -2px hsl(var(--warning) / var(--glow-opacity));
+  }
+
+  .gradient-text-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(270 95% 70%) 50%, hsl(var(--accent)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gradient-text-cyber {
+    background: linear-gradient(135deg, hsl(188 95% 55%) 0%, hsl(var(--primary)) 50%, hsl(35 100% 60%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .cyber-grid {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  }
+
+  .cyber-radial {
+    background: radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.14) 0%, transparent 60%);
+  }
+
+  .dark .cyber-radial {
+    background: radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.18) 0%, transparent 65%);
+  }
+
+  /* Professional Designer Background Effects */
+  .bg-dot-grid {
+    background-image: radial-gradient(hsl(var(--muted-foreground) / 0.22) 1.2px, transparent 1.2px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 35%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 35%, transparent 100%);
+  }
+
+  .bg-mesh-aurora {
+    background: 
+      radial-gradient(circle at 15% 15%, hsl(var(--primary) / 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 85% 25%, hsl(var(--accent) / 0.10) 0%, transparent 45%),
+      radial-gradient(circle at 50% 65%, hsl(var(--primary) / 0.06) 0%, transparent 55%);
+  }
+
+  .dark .bg-mesh-aurora {
+    background: 
+      radial-gradient(circle at 20% 12%, hsl(var(--primary) / 0.22) 0%, transparent 45%),
+      radial-gradient(circle at 80% 22%, hsl(var(--accent) / 0.16) 0%, transparent 50%),
+      radial-gradient(circle at 50% 70%, hsl(270 95% 70% / 0.10) 0%, transparent 60%);
+  }
+
+  .glass-pro {
+    background: hsl(var(--card) / 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .dark .glass-pro {
+    background: hsl(var(--card) / 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.animate-float {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatSlow 4s ease-in-out 2s infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.45);
+}
